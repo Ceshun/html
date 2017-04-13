@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>$.geocomplete()</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <style type="text/css" media="screen">
+      .map_canvas { float: left; }
+      form { width: 90%; }
+      fieldset { width: 90%; margin-top: 20px}
+      fieldset label { display: block; margin: 0.5em 0 0em; }
+      fieldset input { width: 95%; }
+    </style>
+  </head>
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <body>
+
+    <center><h3 class="w3-panel w3-border w3-round-xlarge">Custom Location:</h3></center>
+    <div class="map_canvas"></div>
+
+    <form>
+      <select name="domeen" class="w3-panel w3-border w3-round-xlarge">
+        <option value="tallinn">Tallinn</option>
+        <option value="tartu">Tartu</option>
+        <option value="parnu">Pärnu</option>
+        <option value="haapsalu">Haapsalu</option>
+      </select>
+      <input id="geocomplete" type="text" placeholder="Type in an address" value="" class="w3-panel w3-border w3-round-xlarge"/>
+     <input id="find" type="button" value="find" class="w3-panel w3-border w3-round-xlarge"/>
+      <input id="Launch" type="button" value="Launch Location" onclick="launchLocation()" class="w3-panel w3-border w3-round-xlarge">
+
+
+
+      <script>
+
+
+    function launchLocation () {
+      var dom, lati, long;
+       dom = document.getElementsByName('domeen');
+
+       lati = document.getElementsByName("lat");
+       long = document.getElementsByName("lng");
+      window.open('http://poraakel.eu/'+dom[0].value+"/?lat="+lati[0].value+"&lon="+long[0].value);
+
+    }
+
+      </script>
+
+        <input name="lat" type="text" value="">
+
+        <input name="lng" type="text" value="">
+
+
+    </form>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDscKUJ46VxomUOjlqxvnp1t5qwiZl3H8o&sensor=false&amp;libraries=places"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <script src="../jquery.geocomplete.js"></script>
+
+    <script>
+      $(function(){
+        $("#geocomplete").geocomplete({
+          map: ".map_canvas",
+          details: "form",
+          types: ["geocode", "establishment"],
+        });
+
+        $("#find").click(function(){
+          $("#geocomplete").trigger("geocode");
+        });
+      });
+    </script>
+
+
+
+  </body>
+</html>
+
