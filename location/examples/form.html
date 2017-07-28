@@ -68,6 +68,12 @@
           types: ["geocode", "establishment"],
         });
 
+		$("#geocomplete").bind("geocode:dragged", function(event, latLng){
+          $("input[name=lat]").val(latLng.lat());
+          $("input[name=lng]").val(latLng.lng());
+          $("#reset").show();
+        });
+		
         $("#find").click(function(){
           $("#geocomplete").trigger("geocode");
         });
