@@ -49,12 +49,12 @@
 
     mapOptions: {
       zoom: 14,
-      scrollwheel: false,
+      scrollwheel: true,
       mapTypeId: "roadmap"
     },
 
     markerOptions: {
-      draggable: false
+      draggable: true
     },
 
     maxZoom: 16,
